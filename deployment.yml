@@ -15,7 +15,7 @@ spec:
       containers:
       - name: go-app
         # 這裡的 tag 之後會被 GitHub Actions 自動改掉
-        image: docker-id/go-argocd:latest 
+        image: jefflin0225/demo-golang:3cf4b69
         ports:
         - containerPort: 8080
 ---
