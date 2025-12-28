@@ -15,7 +15,7 @@ spec:
       containers:
       - name: go-app
         # 這裡的 tag 之後會被 GitHub Actions 自動改掉
-        image: jefflin0225/demo-golang:3cf4b69
+        image: jefflin0225/demo-golang:b6c28dc
         ports:
         - containerPort: 8080
 ---
