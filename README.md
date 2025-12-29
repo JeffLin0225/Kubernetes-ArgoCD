@@ -1,4 +1,4 @@
-# Go-K8s-GitOps-Demo 🚀
+# GitOps-Kubernetes-ArgoCD 🐙
 
 ![CI Status](https://img.shields.io/badge/CI-GitHub_Actions-blue?logo=github-actions)
 ![CD Status](https://img.shields.io/badge/CD-ArgoCD-orange?logo=argo)
@@ -22,12 +22,12 @@
 ###### 🛠 專案結構 (Repositories) & 技術堆疊 (Tech Stack)
 - 本專案分為兩個儲存庫：
 1.  **Source Code Repo (本專案)**: 包含 Go 程式碼、Dockerfile 與 GitHub Actions Workflow。
-2.  **CD Repo (Kubernetes Manifests)**: 包含 K8s YAML 設定檔 (`deployment.yml`, `service.yml`)。
+2.  **CD Repo (Kubernetes Manifests)**: 包含 Kubernetes YAML 設定檔 (`deployment.yml`)。
 
 | 類別 | 工具 | 用途 |
 | :--- | :--- | :--- |
 | **語言** | Golang (Gin Framework) | 後端應用程式 |
-| **容器化** | Docker | 應用封裝 |
+| **容器化環境** | Docker | 應用封裝 |
 | **CI 工具** | GitHub Actions | 自動化構建、測試、推送 Image |
 | **CD 工具** | ArgoCD | GitOps 同步與部署管理 |
 | **基礎設施** | Kubernetes | 容器編排與管理 |
@@ -82,5 +82,6 @@ graph LR
 ## 🚀 執行指南 (Getting Started)
 
 為了確保環境設定正確，請嚴格依照以下順序閱讀並執行文件：
- [INSTALL.md](./INSTALL.md)。
+1.  [INSTALL.md](./INSTALL.md)。
+2.  [Usage.md](./Usage.md)
 https://deep-wedelia-d0a.notion.site/2ca488f98401801aa42ec3972c6d14ed
