@@ -10,15 +10,12 @@
 * **ArgoCD CLI** (不一定需要，用於 debug)。
 
 ---
-### 步驟 1：準備雙 Repo 結構
+### 步驟 1：準備 Application Repo, Config Repo (雙 Repo) 結構
 
 為了符合 GitOps 最佳實踐，我們需要建立兩個 GitHub Repository：
 
 1. **Application Repo (Source Code)**: 放 Application 的 code。 *範例 : [Demo-Golang](https://github.com/JeffLin0225/Demo-Golang)*
 2. **Config Repo (Manifests)**: 放 K8s YAML。 *範例 : [Kubernetes-ArgoCD](https://github.com/JeffLin0225/Kubernetes-ArgoCD)*
-
----
-### 步驟 2：Application Repo, Config Repo, DockerHub 交互設定
 
 ---
 ### 步驟 3：設定Application Repo 的 CI 配置文件
@@ -161,3 +158,89 @@ spec:
       targetPort: 8080
   type: LoadBalancer
 ```
+---
+### 步驟 2：GitHub (雙 Repo), DockerHub  權限交互設定
+
+一. Application Repo 與 CD Repo 的同步權限 : 
+>為了讓  Application Repo 可以同步 Tag 到CD Repo，但直接給 GitHub Access Token 權限太大了，所以採用 Deploy Key。
+1. Terminal 生產公私鑰 `一路按 Enter (不用設密碼)`
+```
+ssh-keygen -t ed25519 -C "argocd-gitops" -f gitops_key
+```
+
+2. 你會得到兩個檔案：
+- gitops_key (私鑰 🗝️)：要給 Application Repo (Action) 用的。
+- gitops_key.pub (公鑰 🔒)：要給 CD Repo (門鎖) 用的。
+
+3. 準備`公鑰`內容: <br>`大概長這樣 ssh-ed25519 AAAAC......(中間很長)..... argocd-gitops`
+- 到CD Repo下列 URL `換上你自己的` 設定 Deploy Key
+```
+https://github.com/<你的帳號>/<CD_Repo>/settings/keys
+```
+- 點 add deploy keys
+- 填入Title : `可以隨便填，沒有用到Name` argocd_gitops_key.pub 
+- 填入Key `公鑰`: `完整填入 ssh-ed25519 AAAAC......(中間很長)..... argocd-gitops`
+
+4. 準備`私鑰`內容:
+```
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3Bl..(中間是很長的亂碼)..QFBgc=
+-----END OPENSSH PRIVATE KEY-----
+```
+
+- 到Application Repo下列 URL `換上你自己的` 設定 Repository secrets
+```
+https://github.com/<你的帳號>/<CD_Repo>/settings/secrets/actions
+```
+- 點 New repo secret 
+- 填入Name : ARGOCD_GITOPS_KEY
+<br>`會用到，要跟 ssh-key: ${{ secrets.ARGOCD_GITOPS_KEY }}一樣`
+- 填入Secret : 完整把`私鑰`填入
+<br>
+```
+包含-----BEGIN OPENSSH PRIVATE KEY-----
+b3Bl..(中間是很長的亂碼)..QFBgc=
+-----END OPENSSH PRIVATE KEY-----
+```
+
+二. DockerHub 推送權限 : 
+
+三. ArgoCD 配置 : 
+  1. Terminal 生成密碼 `(記下來)`
+    ```
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+    ```
+  2. 帳號: admin , 密碼: <Terminal 取得的密碼>
+  
+直接看實作影片
+
+
+---
+### 步驟 5：在Kubernetes 安裝 ArgoCD
+1. 創建空間
+```
+kubectl create namespace argocd
+```
+2. 安裝 ArgoCD 
+```
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+3. 檢查狀況
+```
+kubectl get pods -n argocd
+```
+---
+### 步驟 6：設定 GitHub 雙 Repo , DockerHub 權限設定
+重點設定: 
+一. Application Repo 與 CD Repo 的同步權限
+
+二. DockerHub 推送權限
+
+三. ArgoCD 配置
+  1. 生成密碼 `(記下來)`
+    ```
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+    ```
+  2. 帳號: admin , 密碼: <Terminal 取得的密碼>
+  
+直接看實作影片
