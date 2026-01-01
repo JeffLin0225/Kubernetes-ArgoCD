@@ -106,4 +106,12 @@ Application Repo(CI) -> CD Repo -> ArgoCD -> DockerHub -> Kubernetes
 ## 🚀 執行指南 (Getting Started)
 
 為了確保環境設定正確，請嚴格依照以下順序閱讀並執行文件：
-1.  安裝與環境指南：[Installation.md](./Installation.md)
+
+**1. 先閱讀並執行環境安裝**：<br/>
+
+[![Installation](https://img.shields.io/badge/Step%20-Install_Steps-brightgreen?style=for-the-badge)](https://github.com/JeffLin0225/Kubernetes-ArgoCD/blob/main/Installation.md)<br/>
+
+**2. 實作報告**：<br/>
+[![Test_Report](https://img.shields.io/badge/Step%202-Test_Report-orange?style=for-the-badge)](https://github.com/JeffLin0225/Kubernetes-ArgoCD/blob/main/Test_Report.md)
+
+> 內容包含：透過 GitHub Actions 與 ArgoCD 實現 GitOps 自動化部署、使用 OrbStack (K8s) 並安裝 ArgoCD、區分 App Repo (原始碼) 與 Config Repo (部署清單)、GitHub Actions 完成 CI (打包鏡像) 後，利用 SSH Key 自動更新 Config Repo 的版本標籤、由 ArgoCD 偵測變更，將新版本自動部署至 K8s。
