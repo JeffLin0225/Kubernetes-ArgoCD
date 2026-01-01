@@ -11,6 +11,8 @@
 
 ---
 ###### 🚀 實作影片 (Experimental Video)
+[![完整實作影片(點這裡！)](https://img.shields.io/badge/Click_Demo_Video_完整實作影片(點這裡！)-orange?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/ArgoCD_video.mp4)
+![ArgoCD_short](ArgoCD_short.gif)
 
 ---
 ###### 🚀 架系統架構 (Architecture)
@@ -79,7 +81,7 @@ graph LR
 
 ---
 ###### 系統流程說明 (GitHub 雙Repo, DockerHub, ArgoCD, Kubernetes )
->先說明 *系統流程* ，細節於 Installation.md & 下方一併詳細說明<br>
+>先說明 *系統流程* ，細節於 Installation.md & 下方一併詳細說明
 Application Repo(CI) -> CD Repo -> ArgoCD -> DockerHub -> Kubernetes
 
  - ----- GitHub -----
@@ -98,7 +100,7 @@ Application Repo(CI) -> CD Repo -> ArgoCD -> DockerHub -> Kubernetes
     7. 檢測 Kube 內是否有該Image
     <br>`沒有的話: 會去 DockerHub 拉取部屬`
     > - 就算 **私自Kubectl 修改配置** 也沒用
-    <br>ArgoCD會**自動 Rollback**，依照Git上的 deployment.yml 配置
+    ArgoCD會**自動 Rollback**，依照Git上的 deployment.yml 配置
 
 ---
 ## 🚀 執行指南 (Getting Started)
