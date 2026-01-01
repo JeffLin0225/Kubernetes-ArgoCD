@@ -1,4 +1,4 @@
-# Go-K8s-GitOps-Demo 🚀
+# ArgoCD GitOps Lab (Declarative CD Automation)
 
 ![CI Status](https://img.shields.io/badge/CI-GitHub_Actions-blue?logo=github-actions)
 ![CD Status](https://img.shields.io/badge/CD-ArgoCD-orange?logo=argo)
