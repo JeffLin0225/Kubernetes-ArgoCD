@@ -11,7 +11,7 @@
 
 ---
 ###### 🚀 實作影片 (Experimental Video)
-[![完整實作影片(點這裡！)](https://img.shields.io/badge/Click_Demo_Video_完整實作影片(點這裡！)-orange?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/ArgoCD_video.mp4)<br>
+[![完整實作影片(點這裡！)](https://img.shields.io/badge/Click_to_實作影片(點這裡！)_ArgoCD_video-orange?style=for-the-badge&logo=youtube)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/ArgoCD_video.mp4)<br>
 [![ArgoCD_short](ArgoCD_short.gif)](https://pub-05c62739ac6f4499a3401b26d0e9faaf.r2.dev/video/ArgoCD_video.mp4)
 
 ---
